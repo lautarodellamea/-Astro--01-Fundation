@@ -1,0 +1,31 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+// Server Only
+// se genera en momento de construcción
+const name = "Yain Gnesutta";
+const title = "Home Page";
+---
+
+<MainLayout title={title}>
+  <h1>{name}</h1>
+  <p>Momento actual: {new Date().toLocaleTimeString()}</p>
+  <p id="current-time">
+    Momento actual real: {new Date().toLocaleDateString()}
+  </p>
+
+  <footer>2023</footer>
+
+  <script>
+    // Client Only
+    // se genera en momento de ejecución
+    const currentTimeParagraph = document.querySelector("#current-time");
+    const footer = document.querySelector("footer");
+
+    const currentYear: number = new Date().getFullYear();
+
+    if (footer) footer.innerHTML = `Año: ${currentYear}`;
+    if (currentTimeParagraph)
+      currentTimeParagraph.innerHTML = `Momento actual real: ${new Date().toLocaleTimeString()}`;
+  </script>
+</MainLayout>
